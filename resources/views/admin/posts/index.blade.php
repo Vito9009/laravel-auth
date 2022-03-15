@@ -19,10 +19,10 @@
                 <th class="align-middle text-center" scope="row">{{$post["id"]}}</th>
                 <td class="align-middle text-center">{{$post["title"]}}</td>
                 <td class="align-middle text-center">{{$post["content"]}}</td>
-                <td class="align-middle text-center"><a href="#"><button type="button" class="btn btn-secondary">Read</button></a></td>
-                <td class="align-middle text-center"><a href=""><button type="button" class="btn btn-secondary">Edit</button></a></td>
+                <td class="align-middle text-center"><a href="{{route("admin.posts.show", $post->id)}}"><button type="button" class="btn btn-secondary">Read</button></a></td>
+                <td class="align-middle text-center"><a href="{{route("admin.posts.edit", $post->id)}}"><button type="button" class="btn btn-secondary">Edit</button></a></td>
                 <td class="align-middle text-center">
-                  <form action="" method="post">
+                  <form action="{{route("admin.posts.destroy", $post->id)}}" method="post">
 
                     @csrf
                     @method("DELETE")
@@ -35,6 +35,9 @@
     </tbody>
   </table>
 
+  <div class="text-center my-5">
+    <a href="{{route("admin.posts.create")}}"><button type="button" class="btn btn-secondary">Scrivi un nuovo articolo</button></a>
+  </div>
 @endsection
 
 @dump($posts);
