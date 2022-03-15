@@ -39,4 +39,3 @@
     <a href="{{route("admin.posts.create")}}"><button type="button" class="btn btn-secondary">Scrivi un nuovo articolo</button></a>
   </div>
 @endsection
-

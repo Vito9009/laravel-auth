@@ -19,6 +19,16 @@
                 <textarea class="form-control" id="content" name="content" rows="30" placeholder="Testo articolo">{{$post->content}}</textarea>
             </div>
 
+            <div class="form-group d-none">
+                <label for="published">Published</label>
+                <input class="form-control" type="text" placeholder="Titolo" id="published" name="published" value="{{$post->published}}">
+            </div>
+
+            <div class="form-group d-none">
+                <label for="slug">Slug</label>
+                <input class="form-control" type="text" placeholder="Titolo" id="slug" name="slug" value="{{$post->slug}}">
+            </div>
+
             <div class="text-center">
                 <button type="submit" class="btn btn-secondary my-5 text-center">Salva</button>
             </div>

@@ -13,6 +13,17 @@
                 <input class="form-control" type="text" placeholder="Titolo" id="title" name="title">
             </div>
 
+            <div class="form-group d-none">
+                <label for="published">Published</label>
+                <input class="form-control" type="text" placeholder="Titolo" id="published" name="published">
+            </div>
+            
+
+            <div class="form-group d-none">
+                <label for="slug">Slug</label>
+                <input class="form-control" type="text" placeholder="Titolo" id="slug" name="slug">
+            </div>
+
             <div class="form-group">
                 <label for="content">Content</label>
                 <textarea class="form-control" id="content" name="content" rows="30" placeholder="Testo articolo"></textarea>
