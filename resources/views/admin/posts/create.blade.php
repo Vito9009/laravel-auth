@@ -18,7 +18,13 @@
                 <textarea class="form-control" id="content" name="content" rows="30" placeholder="Testo articolo"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-secondary my-5 text-center">Salva</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary my-5 text-center">Salva</button>
+            </div>
+
+            <div class="text-center">
+                <a href="{{route("admin.posts.index")}}"><button type="button" class="btn btn-secondary">Torna alla home</button></a>
+            </div>
         </form>
     </div>
 

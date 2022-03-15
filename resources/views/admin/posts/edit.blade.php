@@ -22,6 +22,10 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-secondary my-5 text-center">Salva</button>
             </div>
+
+            <div class="text-center">
+                <a href="{{route("admin.posts.index")}}"><button type="button" class="btn btn-secondary">Torna alla home</button></a>
+            </div>
         </form>
     </div>
 
