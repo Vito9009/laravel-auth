@@ -11,12 +11,20 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" type="text" placeholder="Nome del fumetto" id="title" name="title" value="{{$post->title}}">
+                <input class="form-control" type="text" placeholder="Nome del fumetto" id="title" name="title" value="{{$post->title}} {{ old('title') ?? $post->title }}">
+
+                @error('title')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
-                <label for="content">Description</label>
-                <textarea class="form-control" id="content" name="content" rows="30" placeholder="Testo articolo">{{$post->content}}</textarea>
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="30" placeholder="Testo articolo">{{$post->content}}  {{ old('title') ?? $post->title }}</textarea>
+
+                @error('content')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group d-none">

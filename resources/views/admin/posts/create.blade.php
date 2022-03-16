@@ -10,7 +10,11 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" type="text" placeholder="Titolo" id="title" name="title">
+                <input class="form-control @error('title') is-invalid @enderror" type="text" placeholder="Titolo" id="title" name="title">
+
+                @error('title')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>            
 
             <div class="form-group d-none">
@@ -20,7 +24,11 @@
 
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea class="form-control" id="content" name="content" rows="30" placeholder="Testo articolo"></textarea>
+                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="30" placeholder="Testo articolo"></textarea>
+
+                @error('content')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="text-center">
@@ -32,5 +40,4 @@
             </div>
         </form>
     </div>
-
 @endsection
