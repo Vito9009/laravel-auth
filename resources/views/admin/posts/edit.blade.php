@@ -20,11 +20,6 @@
             </div>
 
             <div class="form-group d-none">
-                <label for="published">Published</label>
-                <input class="form-control" type="text" placeholder="Titolo" id="published" name="published" value="{{$post->published}}">
-            </div>
-
-            <div class="form-group d-none">
                 <label for="slug">Slug</label>
                 <input class="form-control" type="text" placeholder="Titolo" id="slug" name="slug" value="{{$post->slug}}">
             </div>

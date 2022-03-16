@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class PostController extends Controller
 {
     /**
@@ -38,17 +38,43 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "title" => 'required|max:255',
+            "content" => 'required'
+        ]);
+
         $data = $request->all();
 
-        $newPost = new Post;
-        $newPost->title = $data['title'];
-        $newPost->content = $data['content'];
-        $newPost->published = $data['published'];
-        $newPost->slug = $data['slug'];
+        $slug = Str::slug($data['title']);
+        
+        $count = 1;
 
+        while(Post::where('slug', $slug)->first()){
+            $slug = Str::slug($data['title'])."-".$count;
+            $count++;
+        }
+
+        $data['slug'] = $slug;
+
+        $newPost = new Post;
+
+        $newPost->fill($data);
         $newPost->save();
 
         return redirect()->route('admin.posts.show', $newPost->id);
+
+        /**
+         *         $data = $request->all();
+
+        * $newPost = new Post;
+        * $newPost->title = $data['title'];
+        * $newPost->content = $data['content'];
+        * $newPost->published = $data['published'];
+        * $newPost->slug = $data['slug'];
+        * $newPost->save();
+        * return redirect()->route('admin.posts.show', $newPost->id);
+         */
+
     }
 
     /**
@@ -84,20 +110,50 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Post $post)
     {
-        $newPost = Post::find($id);
+        $request->validate([
+            "title" => 'required|max:255',
+            "content" => 'required'
+        ]);
 
         $data = $request->all();
 
-        $newPost->title = $data['title'];
-        $newPost->content = $data['content'];
-        $newPost->published = $data['published'];
-        $newPost->slug = $data['slug'];
+        if($post->title == $data['title']){
+            $slug = $data['slug'];
+        }else{
+            $slug = Str::slug($data['title']);
+            $count = 1;
+            while(Post::where('slug', $slug)
+            ->where('id', '!=', $post->id)
+            ->first()){
+                $slug = Str::slug($data['title'])."-".$count;
+                $count++;
+            }
+        }
 
-        $newPost->save();
+        $data['slug'] = $slug;
 
-        return redirect()->route('admin.posts.show', $newPost->id);
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', $post);
+
+        /**
+         * $newPost = Post::find($id);
+
+        * $data = $request->all();
+
+        * $newPost->title = $data['title'];
+        * $newPost->content = $data['content'];
+        
+         * $newPost->published = $data['published'];
+        
+        * $newPost->slug = $data['slug'];
+
+        * $newPost->save();
+
+        * return redirect()->route('admin.posts.show', $newPost->id);
+         */
     }
 
     /**

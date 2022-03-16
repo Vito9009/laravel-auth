@@ -17,6 +17,10 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+
+            <div class="text-center">
+                <a href="{{route("admin.posts.index")}}"><button type="button" class="btn btn-secondary my-3">Vai alla home</button></a>
+            </div>
         </div>
     </div>
 </div>
